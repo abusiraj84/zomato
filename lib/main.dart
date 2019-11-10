@@ -15,26 +15,12 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.grey[900],
         elevation: 2,
-        title: Text('Zomato' , style:TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),
+        title: Text('Zomato',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
       ),
       body: Column(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 15,right: 10,left: 10,bottom:2),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text('DELICIOUS TURKISH FOOD',
-                    style: TextStyle(color: Colors.grey[500])),
-                Row(
-                  children: <Widget>[
-                    Text('See all', style: TextStyle(color: Colors.red[800])),
-                    Icon(Icons.arrow_right, color: Colors.red[800]),
-                  ],
-                )
-              ],
-            ),
-          ),
+          SectionName(),
           SizedBox(
             height: 240,
             child: Container(
@@ -59,6 +45,34 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+
+
+class SectionName extends StatelessWidget {
+  const SectionName({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+            padding:
+                const EdgeInsets.only(top: 15, right: 10, left: 10, bottom: 2),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text('DELICIOUS TURKISH FOOD',
+                    style: TextStyle(color: Colors.grey[500])),
+                Row(
+                  children: <Widget>[
+                    Text('See all', style: TextStyle(color: Colors.red[800])),
+                    Icon(Icons.arrow_right, color: Colors.red[800]),
+                  ],
+                ),
+              ],
+            ),
+          );
+  }
+}
+
 
 class FirstList extends StatelessWidget {
   const FirstList({Key key}) : super(key: key);
@@ -135,15 +149,24 @@ class FirstList extends StatelessWidget {
               children: <Widget>[
                 Align(
                   alignment: Alignment.bottomLeft,
-                                  child: Text(
+                  child: Text(
                     'Mangalci Et',
                     style: TextStyle(fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left,
                   ),
                 ),
-                Align( alignment: Alignment.bottomLeft,child: Text('Quiq Bites', style: TextStyle(color: Colors.grey[500],fontSize: 12),)),
-                Align( alignment: Alignment.bottomLeft,child: Text('Bagcilar Merkez, Istanbul', style: TextStyle(color: Colors.grey[500],fontSize: 12),)),
-                
+                Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      'Quiq Bites',
+                      style: TextStyle(color: Colors.grey[500], fontSize: 12),
+                    )),
+                Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      'Bagcilar Merkez, Istanbul',
+                      style: TextStyle(color: Colors.grey[500], fontSize: 12),
+                    )),
               ],
             ),
           )
