@@ -18,61 +18,99 @@ class HomePage extends StatelessWidget {
         title: Text('Zomato',
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
       ),
-      body: Column(
+      body: ListView(
         children: <Widget>[
-          SectionName(),
+                    /////////////////////////////////
+
+          _sectionname(title: 'DELICIOUS TURKISH FOOD'),
           SizedBox(
-            height: 240,
-            child: Container(
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  FirstList(),
-                  FirstList(),
-                  FirstList(),
-                  FirstList(),
-                  FirstList(),
-                  FirstList(),
-                ],
-              ),
+            height: 190,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                FirstList(),
+                FirstList(),
+                FirstList(),
+                FirstList(),
+                FirstList(),
+                FirstList(),
+              ],
             ),
           ),
-          SizedBox(
-            height: 10,
+          SizedBox(height: 10),
+                    /////////////////////////////////
+
+          _sectionname(title: 'RESTURANT CAFE'),
+            SizedBox(
+            height: 190,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                FirstList(),
+                FirstList(),
+                FirstList(),
+                FirstList(),
+                FirstList(),
+                FirstList(),
+              ],
+            ),
           ),
+           SizedBox(height: 10),
+                     /////////////////////////////////
+
+          _sectionname(title: 'CASUAL DINING'),
+            SizedBox(
+            height: 190,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                FirstList(),
+                FirstList(),
+                FirstList(),
+                FirstList(),
+                FirstList(),
+                FirstList(),
+              ],
+            ),
+          ),
+                    /////////////////////////////////
+
         ],
       ),
     );
   }
 }
 
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 
-
-class SectionName extends StatelessWidget {
-  const SectionName({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+_sectionname({String title}){
+ 
     return Padding(
-            padding:
-                const EdgeInsets.only(top: 15, right: 10, left: 10, bottom: 2),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text('DELICIOUS TURKISH FOOD',
-                    style: TextStyle(color: Colors.grey[500])),
-                Row(
-                  children: <Widget>[
-                    Text('See all', style: TextStyle(color: Colors.red[800])),
-                    Icon(Icons.arrow_right, color: Colors.red[800]),
-                  ],
-                ),
-              ],
-            ),
-          );
+      padding: const EdgeInsets.only(top: 15, right: 10, left: 10, bottom: 2),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(title,
+              style: TextStyle(color: Colors.grey[500])),
+          Row(
+            children: <Widget>[
+              Text('See all', style: TextStyle(color: Colors.red[800])),
+              Icon(Icons.arrow_right, color: Colors.red[800]),
+            ],
+          ),
+        ],
+      ),
+    );
   }
-}
 
+
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 
 class FirstList extends StatelessWidget {
   const FirstList({Key key}) : super(key: key);
