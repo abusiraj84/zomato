@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
       home: HomePage(),
+      debugShowCheckedModeBanner: false,
+      //theme: ThemeData.dark(),
     ));
 
 class HomePage extends StatelessWidget {
@@ -10,11 +12,15 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.grey[900],
+        elevation: 2,
+        title: Text('Zomato' , style:TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),
+      ),
       body: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.only(top: 15,right: 10,left: 10,bottom:2),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -22,15 +28,15 @@ class HomePage extends StatelessWidget {
                     style: TextStyle(color: Colors.grey[500])),
                 Row(
                   children: <Widget>[
-                    Text('See all', style: TextStyle(color: Colors.red)),
-                    Icon(Icons.arrow_right, color: Colors.red),
+                    Text('See all', style: TextStyle(color: Colors.red[800])),
+                    Icon(Icons.arrow_right, color: Colors.red[800]),
                   ],
                 )
               ],
             ),
           ),
           SizedBox(
-            height: 300,
+            height: 240,
             child: Container(
               child: ListView(
                 scrollDirection: Axis.horizontal,
@@ -68,13 +74,13 @@ class FirstList extends StatelessWidget {
               padding: const EdgeInsets.only(right: 8.0),
               child: Container(
                 width: 150,
-                height: 160,
+                height: 110,
                 decoration: BoxDecoration(
                     color: Color(0xfff35437),
                     borderRadius: BorderRadius.circular(12),
                     image: DecorationImage(
                       image: NetworkImage(
-                        'https://images.pexels.com/photos/273222/pexels-photo-273222.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+                        'https://images.pexels.com/photos/277253/pexels-photo-277253.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
                       ),
                       fit: BoxFit.cover,
                     )),
@@ -85,8 +91,8 @@ class FirstList extends StatelessWidget {
                           begin: Alignment.bottomRight,
                           end: Alignment.topLeft,
                           colors: [
-                            Colors.black.withOpacity(0.7),
-                            Colors.black.withOpacity(0.1),
+                            Colors.black.withOpacity(0.6),
+                            Colors.black.withOpacity(0),
                           ])),
                   child: Stack(
                     children: <Widget>[
