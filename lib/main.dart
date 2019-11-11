@@ -13,14 +13,84 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey[900],
-        elevation: 2,
-        title: Text('Zomato',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: <Widget>[
+            SizedBox(
+              height: 30,
+            ),
+            Row(
+              children: <Widget>[
+                Icon(
+                  Icons.location_on,
+                  color: Colors.red,
+                ),
+                Text('Bagcilar Merkez',
+                    style: TextStyle(
+                      color: Colors.black,
+                    )),
+                Spacer(),
+                Container(
+                  padding:
+                      EdgeInsets.only(top: 2, left: 5, right: 5, bottom: 2),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black54),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.language,
+                        size: 19,
+                        color: Colors.black54,
+                      ),
+                      Text('EN',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.black54,
+                          )),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+                CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      'https://scontent.fist7-1.fna.fbcdn.net/v/t1.0-9/50110061_2134320890121979_165856286758404096_n.jpg?_nc_cat=109&_nc_oc=AQkPL2Kp2Ho5p50oSr_taQRsb0-9Lh60Hehf4QNhgEgp5--1mKLXBXlAlEwAXYhdMKQ&_nc_ht=scontent.fist7-1.fna&oh=c9e898340bd878827e209b1936e532c7&oe=5E55E808'),
+                  radius: 13,
+                )
+              ],
+            ),
+          ],
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(70),
+          child: Container(
+            height: 60,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                decoration: InputDecoration(
+                    disabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        borderSide: BorderSide(color: Colors.black)),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        borderSide: BorderSide(color: Colors.black)),
+                    labelText: "Test..."),
+              ),
+            ),
+          ),
+        ),
       ),
       body: ListView(
         children: <Widget>[
-                    /////////////////////////////////
+          /////////////////////////////////
 
           _sectionname(title: 'DELICIOUS TURKISH FOOD'),
           SizedBox(
@@ -38,10 +108,10 @@ class HomePage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10),
-                    /////////////////////////////////
+          /////////////////////////////////
 
           _sectionname(title: 'RESTURANT CAFE'),
-            SizedBox(
+          SizedBox(
             height: 190,
             child: ListView(
               scrollDirection: Axis.horizontal,
@@ -55,11 +125,11 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-           SizedBox(height: 10),
-                     /////////////////////////////////
+          SizedBox(height: 10),
+          /////////////////////////////////
 
           _sectionname(title: 'CASUAL DINING'),
-            SizedBox(
+          SizedBox(
             height: 190,
             child: ListView(
               scrollDirection: Axis.horizontal,
@@ -73,8 +143,7 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-                    /////////////////////////////////
-
+          /////////////////////////////////
         ],
       ),
     );
@@ -86,26 +155,23 @@ class HomePage extends StatelessWidget {
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
-_sectionname({String title}){
- 
-    return Padding(
-      padding: const EdgeInsets.only(top: 15, right: 10, left: 10, bottom: 2),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Text(title,
-              style: TextStyle(color: Colors.grey[500])),
-          Row(
-            children: <Widget>[
-              Text('See all', style: TextStyle(color: Colors.red[800])),
-              Icon(Icons.arrow_right, color: Colors.red[800]),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
+_sectionname({String title}) {
+  return Padding(
+    padding: const EdgeInsets.only(top: 15, right: 10, left: 10, bottom: 2),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text(title, style: TextStyle(color: Colors.grey[500])),
+        Row(
+          children: <Widget>[
+            Text('See all', style: TextStyle(color: Colors.red[800])),
+            Icon(Icons.arrow_right, color: Colors.red[800]),
+          ],
+        ),
+      ],
+    ),
+  );
+}
 
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
