@@ -31,6 +31,7 @@ class HomePage extends StatelessWidget {
                 Text('Bagcilar Merkez',
                     style: TextStyle(
                       color: Colors.black,
+                      fontSize: 15
                     )),
                 Spacer(),
                 Container(
@@ -72,17 +73,24 @@ class HomePage extends StatelessWidget {
           preferredSize: Size.fromHeight(70),
           child: Container(
             height: 60,
+            
+            decoration: BoxDecoration(
+             
+            ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
                 decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.search),
+                  
                     disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        borderRadius: BorderRadius.all(Radius.circular(6.0)),
                         borderSide: BorderSide(color: Colors.black)),
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        borderRadius: BorderRadius.all(Radius.circular(6.0)),
                         borderSide: BorderSide(color: Colors.black)),
-                    labelText: "Test..."),
+                    labelText: "Search for resturant, cafe..."),
+                    
               ),
             ),
           ),
