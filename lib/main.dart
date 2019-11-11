@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'api/foods/foods-api.dart';
+import 'api/foods/foods.dart';
 
 void main() => runApp(MaterialApp(
       home: HomePage(),
@@ -72,13 +74,13 @@ class HomePage extends StatelessWidget {
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(70),
           child: Container(
-            height: 60,
+            height: 70,
             
             decoration: BoxDecoration(
              
             ),
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(13.0),
               child: TextField(
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.search),
@@ -106,92 +108,17 @@ class HomePage extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
-                FirstList(),
-                FirstList(),
-                FirstList(),
-                FirstList(),
-                FirstList(),
-                FirstList(),
-              ],
-            ),
-          ),
-          SizedBox(height: 10),
-          /////////////////////////////////
-
-          _sectionname(title: 'RESTURANT CAFE'),
-          SizedBox(
-            height: 190,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                FirstList(),
-                FirstList(),
-                FirstList(),
-                FirstList(),
-                FirstList(),
-                FirstList(),
-              ],
-            ),
-          ),
-          SizedBox(height: 10),
-          /////////////////////////////////
-
-          _sectionname(title: 'CASUAL DINING'),
-          SizedBox(
-            height: 190,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                FirstList(),
-                FirstList(),
-                FirstList(),
-                FirstList(),
-                FirstList(),
-                FirstList(),
-              ],
-            ),
-          ),
-          /////////////////////////////////
-        ],
-      ),
-    );
-  }
-}
-
-///////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////
-
-_sectionname({String title}) {
-  return Padding(
-    padding: const EdgeInsets.only(top: 15, right: 10, left: 10, bottom: 2),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Text(title, style: TextStyle(color: Colors.grey[500])),
-        Row(
-          children: <Widget>[
-            Text('See all', style: TextStyle(color: Colors.red[800])),
-            Icon(Icons.arrow_right, color: Colors.red[800]),
-          ],
-        ),
-      ],
-    ),
-  );
-}
-
-///////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////
-
-class FirstList extends StatelessWidget {
-  const FirstList({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
+                  FutureBuilder(
+                 future: fetchFoods(),
+                builder: (context,snapshot){
+                 if(snapshot.hasData){
+                return ListView.builder(
+                itemCount: snapshot.data.length,
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true, 
+                itemBuilder: (BuildContext context, int index) {
+                  Foods foods = snapshot.data[index];
+                return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: <Widget>[
@@ -206,7 +133,129 @@ class FirstList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     image: DecorationImage(
                       image: NetworkImage(
-                        'https://images.pexels.com/photos/277253/pexels-photo-277253.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+                        '${foods.foodImgUrl}',
+                      ),
+                      fit: BoxFit.cover,
+                    )),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      gradient: LinearGradient(
+                          begin: Alignment.bottomRight,
+                          end: Alignment.topLeft,
+                          colors: [
+                            Colors.black.withOpacity(0.6),
+                            Colors.black.withOpacity(0),
+                          ])),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        bottom: 7,
+                        right: 7,
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.green,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 4, bottom: 4, right: 4, left: 4),
+                                child: Text('${foods.foodPuan}',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 9,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            width: 150,
+            alignment: Alignment.bottomLeft,
+            child: Column(
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    '${foods.foodTitle}',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+                Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      '${foods.foodSubCat}',
+                      style: TextStyle(color: Colors.grey[500], fontSize: 12),
+                    )),
+                Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      '${foods.foodAdress}',
+                      style: TextStyle(color: Colors.grey[500], fontSize: 12),
+                    )),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+                },
+                );
+                 }
+                return CircularProgressIndicator();
+                },
+                 ),
+              ],
+            ),
+          ),
+          SizedBox(height: 10),
+          /////////////////////////////////
+
+          _sectionname(title: 'RESTURANT CAFE'),
+          SizedBox(
+            height: 190,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                FutureBuilder(
+                 future: fetchFoods(),
+                builder: (context,snapshot){
+                 if(snapshot.hasData){
+                return ListView.builder(
+                itemCount: snapshot.data.length,
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true, 
+                itemBuilder: (BuildContext context, int index) {
+                  Foods foods = snapshot.data[index];
+                return  Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: <Widget>[
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: Container(
+                width: 150,
+                height: 110,
+                decoration: BoxDecoration(
+                    color: Color(0xfff35437),
+                    borderRadius: BorderRadius.circular(12),
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        '${foods.foodImgUrl}',
                       ),
                       fit: BoxFit.cover,
                     )),
@@ -285,5 +334,61 @@ class FirstList extends StatelessWidget {
         ],
       ),
     );
+                },
+                );
+                 }
+                return CircularProgressIndicator();
+                },
+                 ),
+                
+              ],
+            ),
+          ),
+          SizedBox(height: 10),
+          /////////////////////////////////
+
+          _sectionname(title: 'CASUAL DINING'),
+          SizedBox(
+            height: 190,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                
+              ],
+            ),
+          ),
+          /////////////////////////////////
+        ],
+      ),
+    );
   }
 }
+
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
+_sectionname({String title}) {
+  return Padding(
+    padding: const EdgeInsets.only(top: 15, right: 10, left: 10, bottom: 2),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text(title, style: TextStyle(color: Colors.grey[500])),
+        Row(
+          children: <Widget>[
+            Text('See all', style: TextStyle(color: Colors.red[800])),
+            Icon(Icons.arrow_right, color: Colors.red[800]),
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
