@@ -87,18 +87,20 @@ class HomePage extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(13.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  
-                    disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                        borderSide: BorderSide(color: Colors.black)),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                        borderSide: BorderSide(color: Colors.black)),
-                    labelText: "Search for resturant, cafe..."),
+              child: FadeAnimation(1,
+                TextField(
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.search),
                     
+                      disabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                          borderSide: BorderSide(color: Colors.black)),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                          borderSide: BorderSide(color: Colors.black)),
+                      labelText: "Search for resturant, cafe..."),
+                      
+                ),
               ),
             ),
           ),
@@ -249,7 +251,7 @@ class HomePage extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               children: <Widget>[
                   FutureBuilder(
-                 future: fetchCoffees(),
+                 future: fetchCoffees(coffees: 'http://192.168.1.146/zomato/getcoffe.php'),
                 builder: (context,snapshot){
                  if(snapshot.hasData){
                 return ListView.builder(
@@ -377,7 +379,137 @@ class HomePage extends StatelessWidget {
           /////////////////////////////////
 
           _sectionname(title: 'CASUAL DINING'),
-       
+         SizedBox(
+            height: 190,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                  FutureBuilder(
+                 future: fetchFoods(),
+                builder: (context,snapshot){
+                 if(snapshot.hasData){
+                return ListView.builder(
+                itemCount: snapshot.data.length,
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true, 
+                itemBuilder: (BuildContext context, int index) {
+                  Foods foods = snapshot.data[index];
+                return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: <Widget>[
+          FadeAnimation(0.5,
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Container(
+                  width: 150,
+                  height: 110,
+                  decoration: BoxDecoration(
+                      color: Color(0xfff35437),
+                      borderRadius: BorderRadius.circular(12),
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          '${foods.imgUrl}',
+                        ),
+                        fit: BoxFit.cover,
+                      )),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        gradient: LinearGradient(
+                            begin: Alignment.bottomRight,
+                            end: Alignment.topLeft,
+                            colors: [
+                              Colors.black.withOpacity(0.6),
+                              Colors.black.withOpacity(0),
+                            ])),
+                    child: Stack(
+                      children: <Widget>[
+                        Positioned(
+                          bottom: 7,
+                          right: 7,
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  color: Colors.green,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 4, bottom: 4, right: 4, left: 4),
+                                  child: Text('${foods.puan}',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 9,
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            width: 150,
+            alignment: Alignment.bottomLeft,
+            child: Column(
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    '${foods.title}',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+                Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      '${foods.subcat}',
+                      style: TextStyle(color: Colors.grey[500], fontSize: 12),
+                    )),
+                Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      '${foods.adress}',
+                      style: TextStyle(color: Colors.grey[500], fontSize: 12),
+                    )),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+                },
+                );
+                 }
+                return Container(
+                
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      CircularProgressIndicator(),
+                    ],
+                  ),
+                );
+                },
+                 ),
+              ],
+            ),
+          ),
+          SizedBox(height: 10),
           /////////////////////////////////
         ],
       ),

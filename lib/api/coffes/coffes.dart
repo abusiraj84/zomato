@@ -50,8 +50,8 @@ class Coffees {
 }
 
 
-Future<List<Coffees>> fetchCoffees() async {
-  String url = 'http://192.168.1.146/zomato/getcoffe.php';
+Future<List<Coffees>> fetchCoffees({coffees}) async {
+  String url = coffees;
   final res = await http.get(url);
   return coffeesFromJson(res.body);
 }
