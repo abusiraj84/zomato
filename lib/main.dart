@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:zomato/api/coffes/coffes.dart';
+import 'package:zomato/animation/animation.dart';
+import 'api/coffes/coffes.dart';
 import 'api/foods/foods.dart';
 
-import 'api/coffes/coffes.dart';
+
 
 void main() => runApp(MaterialApp(
       // home: HomePage(),
@@ -10,6 +11,8 @@ void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       //theme: ThemeData.dark(),
     ));
+
+
 
 class HomePage extends StatelessWidget {
 
@@ -125,57 +128,59 @@ class HomePage extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: <Widget>[
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Container(
-                width: 150,
-                height: 110,
-                decoration: BoxDecoration(
-                    color: Color(0xfff35437),
-                    borderRadius: BorderRadius.circular(12),
-                    image: DecorationImage(
-                      image: NetworkImage(
-                        '${foods.foodImgUrl}',
-                      ),
-                      fit: BoxFit.cover,
-                    )),
+          FadeAnimation(0.5,
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8.0),
                 child: Container(
+                  width: 150,
+                  height: 110,
                   decoration: BoxDecoration(
+                      color: Color(0xfff35437),
                       borderRadius: BorderRadius.circular(12),
-                      gradient: LinearGradient(
-                          begin: Alignment.bottomRight,
-                          end: Alignment.topLeft,
-                          colors: [
-                            Colors.black.withOpacity(0.6),
-                            Colors.black.withOpacity(0),
-                          ])),
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned(
-                        bottom: 7,
-                        right: 7,
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                color: Colors.green,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 4, bottom: 4, right: 4, left: 4),
-                                child: Text('${foods.foodPuan}',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 9,
-                                        fontWeight: FontWeight.bold)),
-                              ),
-                            ),
-                          ],
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          '${foods.imgUrl}',
                         ),
-                      ),
-                    ],
+                        fit: BoxFit.cover,
+                      )),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        gradient: LinearGradient(
+                            begin: Alignment.bottomRight,
+                            end: Alignment.topLeft,
+                            colors: [
+                              Colors.black.withOpacity(0.6),
+                              Colors.black.withOpacity(0),
+                            ])),
+                    child: Stack(
+                      children: <Widget>[
+                        Positioned(
+                          bottom: 7,
+                          right: 7,
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  color: Colors.green,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 4, bottom: 4, right: 4, left: 4),
+                                  child: Text('${foods.puan}',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 9,
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -192,7 +197,7 @@ class HomePage extends StatelessWidget {
                 Align(
                   alignment: Alignment.bottomLeft,
                   child: Text(
-                    '${foods.foodTitle}',
+                    '${foods.title}',
                     style: TextStyle(fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left,
                   ),
@@ -200,13 +205,13 @@ class HomePage extends StatelessWidget {
                 Align(
                     alignment: Alignment.bottomLeft,
                     child: Text(
-                      '${foods.foodSubCat}',
+                      '${foods.subcat}',
                       style: TextStyle(color: Colors.grey[500], fontSize: 12),
                     )),
                 Align(
                     alignment: Alignment.bottomLeft,
                     child: Text(
-                      '${foods.foodAdress}',
+                      '${foods.adress}',
                       style: TextStyle(color: Colors.grey[500], fontSize: 12),
                     )),
               ],
@@ -243,7 +248,7 @@ class HomePage extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
-                FutureBuilder(
+                  FutureBuilder(
                  future: fetchCoffees(),
                 builder: (context,snapshot){
                  if(snapshot.hasData){
@@ -253,61 +258,63 @@ class HomePage extends StatelessWidget {
                 shrinkWrap: true, 
                 itemBuilder: (BuildContext context, int index) {
                   Coffees coffees = snapshot.data[index];
-                return  Padding(
+                return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: <Widget>[
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Container(
-                width: 150,
-                height: 110,
-                decoration: BoxDecoration(
-                    color: Color(0xfff35437),
-                    borderRadius: BorderRadius.circular(12),
-                    image: DecorationImage(
-                      image: NetworkImage(
-                        '${coffees.imgUrl}',
-                      ),
-                      fit: BoxFit.cover,
-                    )),
+          FadeAnimation(1,
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8.0),
                 child: Container(
+                  width: 150,
+                  height: 110,
                   decoration: BoxDecoration(
+                      color: Color(0xfff35437),
                       borderRadius: BorderRadius.circular(12),
-                      gradient: LinearGradient(
-                          begin: Alignment.bottomRight,
-                          end: Alignment.topLeft,
-                          colors: [
-                            Colors.black.withOpacity(0.6),
-                            Colors.black.withOpacity(0),
-                          ])),
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned(
-                        bottom: 7,
-                        right: 7,
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                color: Colors.green,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 4, bottom: 4, right: 4, left: 4),
-                                child: Text('3.5',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 9,
-                                        fontWeight: FontWeight.bold)),
-                              ),
-                            ),
-                          ],
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          '${coffees.imgUrl}',
                         ),
-                      ),
-                    ],
+                        fit: BoxFit.cover,
+                      )),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        gradient: LinearGradient(
+                            begin: Alignment.bottomRight,
+                            end: Alignment.topLeft,
+                            colors: [
+                              Colors.black.withOpacity(0.6),
+                              Colors.black.withOpacity(0),
+                            ])),
+                    child: Stack(
+                      children: <Widget>[
+                        Positioned(
+                          bottom: 7,
+                          right: 7,
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  color: Colors.green,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 4, bottom: 4, right: 4, left: 4),
+                                  child: Text('${coffees.puan}',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 9,
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -324,7 +331,7 @@ class HomePage extends StatelessWidget {
                 Align(
                   alignment: Alignment.bottomLeft,
                   child: Text(
-                    'Mangalci Et',
+                    '${coffees.title}',
                     style: TextStyle(fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left,
                   ),
@@ -332,13 +339,13 @@ class HomePage extends StatelessWidget {
                 Align(
                     alignment: Alignment.bottomLeft,
                     child: Text(
-                      'Quiq Bites',
+                      '${coffees.subCat}',
                       style: TextStyle(color: Colors.grey[500], fontSize: 12),
                     )),
                 Align(
                     alignment: Alignment.bottomLeft,
                     child: Text(
-                      'Bagcilar Merkez, Istanbul',
+                      '${coffees.adress}',
                       style: TextStyle(color: Colors.grey[500], fontSize: 12),
                     )),
               ],
@@ -350,10 +357,19 @@ class HomePage extends StatelessWidget {
                 },
                 );
                  }
-                return CircularProgressIndicator();
+                return Container(
+                
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      CircularProgressIndicator(),
+                    ],
+                  ),
+                );
                 },
                  ),
-                
               ],
             ),
           ),
@@ -361,15 +377,7 @@ class HomePage extends StatelessWidget {
           /////////////////////////////////
 
           _sectionname(title: 'CASUAL DINING'),
-          SizedBox(
-            height: 190,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                
-              ],
-            ),
-          ),
+       
           /////////////////////////////////
         ],
       ),

@@ -1,4 +1,4 @@
-package com.example.skynewsarabia
+package com.example.starterapp
 
 import android.os.Bundle
 

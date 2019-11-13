@@ -16,6 +16,7 @@ class Coffees {
     String cat;
     String subCat;
     String adress;
+    String puan;
 
     Coffees({
         this.id,
@@ -24,6 +25,7 @@ class Coffees {
         this.cat,
         this.subCat,
         this.adress,
+        this.puan,
     });
 
     factory Coffees.fromJson(Map<String, dynamic> json) => Coffees(
@@ -33,6 +35,7 @@ class Coffees {
         cat: json["cat"],
         subCat: json["subCat"],
         adress: json["adress"],
+        puan: json["puan"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -42,8 +45,10 @@ class Coffees {
         "cat": cat,
         "subCat": subCat,
         "adress": adress,
+        "puan": puan,
     };
 }
+
 
 Future<List<Coffees>> fetchCoffees() async {
   String url = 'http://192.168.1.146/zomato/getcoffe.php';

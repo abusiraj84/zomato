@@ -8,42 +8,42 @@ List<Foods> foodsFromJson(String str) => List<Foods>.from(json.decode(str).map((
 String foodsToJson(List<Foods> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Foods {
-    String foodId;
-    String foodTitle;
-    String foodImgUrl;
-    String foodPuan;
-    String foodCat;
-    String foodSubCat;
-    String foodAdress;
+    String id;
+    String title;
+    String imgUrl;
+    String puan;
+    String cat;
+    String subcat;
+    String adress;
 
     Foods({
-        this.foodId,
-        this.foodTitle,
-        this.foodImgUrl,
-        this.foodPuan,
-        this.foodCat,
-        this.foodSubCat,
-        this.foodAdress,
+        this.id,
+        this.title,
+        this.imgUrl,
+        this.puan,
+        this.cat,
+        this.subcat,
+        this.adress,
     });
 
     factory Foods.fromJson(Map<String, dynamic> json) => Foods(
-        foodId: json["foodId"],
-        foodTitle: json["foodTitle"],
-        foodImgUrl: json["foodImgUrl"],
-        foodPuan: json["foodPuan"],
-        foodCat: json["foodCat"],
-        foodSubCat: json["foodSubCat"],
-        foodAdress: json["foodAdress"],
+        id: json["id"],
+        title: json["title"],
+        imgUrl: json["imgUrl"],
+        puan: json["puan"],
+        cat: json["cat"],
+        subcat: json["subcat"],
+        adress: json["adress"],
     );
 
     Map<String, dynamic> toJson() => {
-        "foodId": foodId,
-        "foodTitle": foodTitle,
-        "foodImgUrl": foodImgUrl,
-        "foodPuan": foodPuan,
-        "foodCat": foodCat,
-        "foodSubCat": foodSubCat,
-        "foodAdress": foodAdress,
+        "id": id,
+        "title": title,
+        "imgUrl": imgUrl,
+        "puan": puan,
+        "cat": cat,
+        "subcat": subcat,
+        "adress": adress,
     };
 }
 
