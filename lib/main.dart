@@ -251,7 +251,7 @@ class HomePage extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               children: <Widget>[
                   FutureBuilder(
-                 future: fetchCoffees(coffees: 'http://192.168.1.146/zomato/getcoffe.php'),
+                 future: fetchCoffees(coffees: 'http://localhost:8888/zomato/getcoffe.php'),
                 builder: (context,snapshot){
                  if(snapshot.hasData){
                 return ListView.builder(
