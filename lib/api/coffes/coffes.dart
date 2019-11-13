@@ -3,6 +3,7 @@
 //     final coffees = coffeesFromJson(jsonString);
 
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 List<Coffees> coffeesFromJson(String str) => List<Coffees>.from(json.decode(str).map((x) => Coffees.fromJson(x)));
 
@@ -43,3 +44,10 @@ class Coffees {
         "adress": adress,
     };
 }
+
+Future<List<Coffees>> fetchCoffees() async {
+  String url = 'http://192.168.1.146/zomato/getcoffe.php';
+  final res = await http.get(url);
+  return coffeesFromJson(res.body);
+}
+

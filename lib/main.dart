@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zomato/api/coffes/coffes.dart';
-import 'api/foods/foods-api.dart';
 import 'api/foods/foods.dart';
 
-import 'api/coffes/coffes-api.dart';
 import 'api/coffes/coffes.dart';
 
 void main() => runApp(MaterialApp(
