@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:zomato/api/coffes/coffes.dart';
 import 'api/foods/foods-api.dart';
 import 'api/foods/foods.dart';
 
+import 'api/coffes/coffes-api.dart';
+import 'api/coffes/coffes.dart';
+
 void main() => runApp(MaterialApp(
+      // home: HomePage(),
       home: HomePage(),
       debugShowCheckedModeBanner: false,
       //theme: ThemeData.dark(),
     ));
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -215,7 +220,17 @@ class HomePage extends StatelessWidget {
                 },
                 );
                  }
-                return CircularProgressIndicator();
+                return Container(
+                
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      CircularProgressIndicator(),
+                    ],
+                  ),
+                );
                 },
                  ),
               ],
@@ -231,7 +246,7 @@ class HomePage extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               children: <Widget>[
                 FutureBuilder(
-                 future: fetchFoods(),
+                 future: fetchCoffees(),
                 builder: (context,snapshot){
                  if(snapshot.hasData){
                 return ListView.builder(
@@ -239,7 +254,7 @@ class HomePage extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true, 
                 itemBuilder: (BuildContext context, int index) {
-                  Foods foods = snapshot.data[index];
+                  Coffees coffees = snapshot.data[index];
                 return  Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -255,7 +270,7 @@ class HomePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     image: DecorationImage(
                       image: NetworkImage(
-                        '${foods.foodImgUrl}',
+                        '${coffees.imgUrl}',
                       ),
                       fit: BoxFit.cover,
                     )),
@@ -391,4 +406,5 @@ _sectionname({String title}) {
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
+
 
